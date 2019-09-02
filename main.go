@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/xml"
+	"flag"
 	"fmt"
 	"io/ioutil"
 	"net/http"
@@ -11,6 +12,7 @@ import (
 )
 
 // 使用 https://crypot.51strive.com/jsontogo/ 自动转换
+
 // Netease 网易blogxml结构
 type Netease struct {
 	XMLName xml.Name `xml:"root"`
@@ -108,9 +110,16 @@ var htmlContent = `<!DOCTYPE html>
 `
 
 func main() {
+	var filename string
 
+	flag.StringVar(&filename, "f", "", "网易博客xml文件")
+	flag.Parse()
+	if filename == "" {
+		fmt.Println("Usage: \n\tnetease_blog -f xxx.xml")
+		return
+	}
 	fmt.Println("读取数据")
-	getNetese("onefish.xml")
+	getNetese(filename)
 	fmt.Println("数据读取完成")
 
 	// 生成页面数据

@@ -8,8 +8,8 @@
 
 ## 命令行	
 
-		Usage: 
-	    netease_blog -f xxx.xml
+Usage: 
+    netease_blog -f xxx.xml
 
 
 ## 使用
